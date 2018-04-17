@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {createTodo} from './actions/todos';
+import {createTodo, deleteTodo} from './actions/todos';
 
 class App extends Component{
   _handleChange = e => {
@@ -8,17 +8,23 @@ class App extends Component{
       let item = e.target.querySelector('input').value;
       this.props.createTodo(item);
   }
+
+  _handleDelete = id => {
+      this.props.deleteTodo(id)
+  }
+
   render(){
       return (
           <div>
               <form onSubmit={this._handleChange}>
                   <input type="text" name="listItem" />
-                  <button type="submit">button</button>
+                  <button type="submit">Add</button>
               </form>
               <br/>
               {this.props.todos.map((text, id)=>(
                   <div key={id}>
-                      {text}
+                      <span>{text}</span>
+                      <span><button onClick={() => this._handleDelete(id)}>X</button></span>
                   </div>
               ))}
           </div>
@@ -28,4 +34,4 @@ class App extends Component{
 
 export default connect(state => ({
   todos: state.todos
-}), {createTodo})(App);
+}), {createTodo, deleteTodo})(App);

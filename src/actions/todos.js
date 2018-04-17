@@ -3,4 +3,11 @@ export function createTodo(text){
         type: 'CREATE_TODO',
         text
     }
-}
+};
+
+export function deleteTodo(id){
+    return {
+        type: 'DELETE_TODO',
+        id
+    }
+};
