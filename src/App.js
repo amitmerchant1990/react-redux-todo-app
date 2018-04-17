@@ -7,6 +7,8 @@ class App extends Component{
       e.preventDefault();
       let item = e.target.querySelector('input').value;
       this.props.createTodo(item);
+      this.refs.todoItem.value = '';
+      this.refs.todoItem.focus();
   }
 
   _handleDelete = id => {
@@ -17,7 +19,7 @@ class App extends Component{
       return (
           <div>
               <form onSubmit={this._handleChange}>
-                  <input type="text" name="listItem" />
+                  <input type="text" name="listItem" ref="todoItem" />
                   <button type="submit">Add</button>
               </form>
               <br/>
