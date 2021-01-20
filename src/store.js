@@ -10,6 +10,6 @@ export default createStore(
     rootReducer,
     undefined,
     compose(
-        window.devToolExtension ? window.devToolExtension() : f=>f
+        window.devToolExtension ? window.devToolExtension() : f => f
     )
 )
